@@ -12,66 +12,73 @@ const userDetails = document.getElementById("userDetails");
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
-/// Sign in event handlers
+// Email and Password Log in
 
-signInBtn.onclick = () => auth.signInWithPopup(provider);
+auth.signInWithEmailAndPassword(email, pass);
+auth.createUserWithEmailAndPassword(email, pass);
 
-signOutBtn.onclick = () => auth.signOut();
+auth.onAuthStateChanged((firebaseUser) => {});
 
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    // signed in
-    whenSignedIn.hidden = false;
-    whenSignedOut.hidden = true;
-    userDetails.innerHTML = `<h3>Hello ${user.displayName}!</h3> <p>User ID: ${user.uid}</p>`;
-  } else {
-    // not signed in
-    whenSignedIn.hidden = true;
-    whenSignedOut.hidden = false;
-    userDetails.innerHTML = "";
-  }
-});
+// /// Sign in event handlers
 
-///// Firestore /////
+// signInBtn.onclick = () => auth.signInWithPopup(provider);
 
-const db = firebase.firestore();
+// signOutBtn.onclick = () => auth.signOut();
 
-const createThing = document.getElementById("createThing");
-const thingsList = document.getElementById("thingsList");
+// auth.onAuthStateChanged((user) => {
+//   if (user) {
+//     // signed in
+//     whenSignedIn.hidden = false;
+//     whenSignedOut.hidden = true;
+//     userDetails.innerHTML = `<h3>Hello ${user.displayName}!</h3> <p>User ID: ${user.uid}</p>`;
+//   } else {
+//     // not signed in
+//     whenSignedIn.hidden = true;
+//     whenSignedOut.hidden = false;
+//     userDetails.innerHTML = "";
+//   }
+// });
 
-let thingsRef;
-let unsubscribe;
+// ///// Firestore /////
 
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    // Database Reference
-    thingsRef = db.collection("things");
+// const db = firebase.firestore();
 
-    createThing.onclick = () => {
-      const { serverTimestamp } = firebase.firestore.FieldValue;
+// const createThing = document.getElementById("createThing");
+// const thingsList = document.getElementById("thingsList");
 
-      thingsRef.add({
-        uid: user.uid,
-        name: faker.commerce.productName(),
-        createdAt: serverTimestamp(),
-      });
-    };
+// let thingsRef;
+// let unsubscribe;
 
-    // Query
-    unsubscribe = thingsRef
-      .where("uid", "==", user.uid)
-      .orderBy("createdAt") // Requires a query
-      .onSnapshot((querySnapshot) => {
-        // Map results to an array of li elements
+// auth.onAuthStateChanged((user) => {
+//   if (user) {
+//     // Database Reference
+//     thingsRef = db.collection("things");
 
-        const items = querySnapshot.docs.map((doc) => {
-          return `<li>${doc.data().name}</li>`;
-        });
+//     createThing.onclick = () => {
+//       const { serverTimestamp } = firebase.firestore.FieldValue;
 
-        thingsList.innerHTML = items.join("");
-      });
-  } else {
-    // Unsubscribe when the user signs out
-    unsubscribe && unsubscribe();
-  }
-});
+//       thingsRef.add({
+//         uid: user.uid,
+//         name: faker.commerce.productName(),
+//         createdAt: serverTimestamp(),
+//       });
+//     };
+
+//     // Query
+//     unsubscribe = thingsRef
+//       .where("uid", "==", user.uid)
+//       .orderBy("createdAt") // Requires a query
+//       .onSnapshot((querySnapshot) => {
+//         // Map results to an array of li elements
+
+//         const items = querySnapshot.docs.map((doc) => {
+//           return `<li>${doc.data().name}</li>`;
+//         });
+
+//         thingsList.innerHTML = items.join("");
+//       });
+//   } else {
+//     // Unsubscribe when the user signs out
+//     unsubscribe && unsubscribe();
+//   }
+// });
