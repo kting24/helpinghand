@@ -160,6 +160,7 @@ body{
 }
 
 /*Blocks */
+
 .container {
     max-width: 720px;
 }
@@ -183,4 +184,8 @@ img{
 .card a{
   font-size: 14px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#volunteer{
+  background-color: white;
 }
