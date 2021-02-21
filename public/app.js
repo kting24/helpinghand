@@ -32,6 +32,8 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
+
+
 // ///// Firestore /////
 
 // const db = firebase.firestore();
