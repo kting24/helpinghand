@@ -137,3 +137,50 @@ body{
   background-color: rgb(152, 76, 175);
   color: white;
 }
+
+
+.tabcontent h1 {
+  float: center;
+  color:  rgb(152, 76, 175);
+  text-align: center;
+  text-decoration: none;
+  font-size: 48px;
+  margin: 50 px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.tabcontent a {
+  float: left;
+  color: black;
+  text-align: left;
+  text-decoration: lavender;
+  font-size: 28px;
+  margin: 100 px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Blocks */
+.container {
+    max-width: 720px;
+}
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+img{
+    vertical-align: middle;
+    border-style: none;
+}
+
+.card a{
+  font-size: 14px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
