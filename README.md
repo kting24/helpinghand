@@ -1,1 +1,1 @@
-# helpinghand
+#HelpingHand - SDHacks Project
